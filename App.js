@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import Home from './screen/home';
 import Depense from './screen/depence';
@@ -44,7 +44,7 @@ export default function App() {
           })}
         >
           <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-          <Tab.Screen name="Note" component={Note} options={{ headerShown: true }} />
+          <Tab.Screen name="Note" component={Note} options={{ headerShown: false }} />
           <Tab.Screen name="Materiel" component={Materiel} options={{ headerShown: false }} />
           <Tab.Screen name="Electricite" component={Electricite} options={{ headerShown: false }} />
           <Tab.Screen name="Depense" component={Depense} options={{ headerShown: false }} />
