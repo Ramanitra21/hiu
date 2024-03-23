@@ -6,7 +6,7 @@ const Elec = [
     purchaseDate: '2022-01-15',
     warrantyDate: '2023-01-15',
     expirationDate: '2030-01-15',
-    energyConsumption: '200 W',
+    energyConsumption: '200 ',
     location: 'Cuisine',
     category: 'electric',
     shop: 'ElectroWorld',
@@ -19,7 +19,7 @@ const Elec = [
     purchaseDate: '2021-05-20',
     warrantyDate: '2024-05-20',
     expirationDate: '2031-05-20',
-    energyConsumption: '300 W',
+    energyConsumption: '300 ',
     location: 'Buanderie',
     category: 'electric',
     shop: 'ElectroDepot',
@@ -32,7 +32,7 @@ const Elec = [
     purchaseDate: '2023-09-10',
     warrantyDate: '2026-09-10',
     expirationDate: '2033-09-10',
-    energyConsumption: '100 W',
+    energyConsumption: '100',
     location: 'Salon',
     category: 'electric',
     shop: 'MediaMarkt',
@@ -45,7 +45,7 @@ const Elec = [
     purchaseDate: '2022-03-25',
     warrantyDate: '2025-03-25',
     expirationDate: '2032-03-25',
-    energyConsumption: '600 W',
+    energyConsumption: '600 ',
     location: 'Placard',
     category: 'electric',
     shop: 'Boulanger',
@@ -58,7 +58,7 @@ const Elec = [
     purchaseDate: '2021-11-08',
     warrantyDate: '2024-11-08',
     expirationDate: '2031-11-08',
-    energyConsumption: '1500 W',
+    energyConsumption: '1500 ',
     location: 'Cuisine',
     category: 'electric',
     shop: 'Darty',
@@ -71,7 +71,7 @@ const Elec = [
     purchaseDate: '2023-07-12',
     warrantyDate: '2026-07-12',
     expirationDate: '2033-07-12',
-    energyConsumption: '1200 W',
+    energyConsumption: '1200 ',
     location: 'Salle de bain',
     category: 'electric',
     shop: 'Fnac',
@@ -84,7 +84,7 @@ const Elec = [
     purchaseDate: '2024-02-18',
     warrantyDate: '2027-02-18',
     expirationDate: '2034-02-18',
-    energyConsumption: '2500 W',
+    energyConsumption: '2500 ',
     location: 'Salon',
     category: 'electric',
     shop: 'Conforama',
@@ -110,7 +110,7 @@ const Elec = [
     purchaseDate: '2023-04-05',
     warrantyDate: '2026-04-05',
     expirationDate: '2033-04-05',
-    energyConsumption: '1000 W',
+    energyConsumption: '1000 ',
     location: 'Cuisine',
     category: 'electric',
     shop: 'But',
@@ -123,12 +123,22 @@ const Elec = [
     purchaseDate: '2024-06-20',
     warrantyDate: '2027-06-20',
     expirationDate: '2034-06-20',
-    energyConsumption: '50 W',
+    energyConsumption: '50 ',
     location: 'Salon',
     category: 'electric',
     shop: 'Auchan',
     dailyUsageHours: '0.25' // Par exemple, un aspirateur robot peut fonctionner pendant 15 minutes par jour.
   }
 ];
+export const addNewAppliance = (newAppliance) => {
+  // Générez un nouvel identifiant en trouvant l'id maximum et en ajoutant 1
+  const maxId = Math.max(...Elec.map((appliance) => appliance.id));
+  const newId = maxId + 1;
 
+  // Ajoutez le nouvel identifiant à l'objet newAppliance
+  const applianceWithId = { ...newAppliance, id: newId };
+
+  // Ajoutez le nouvel appareil à l'array Elec
+  Elec.push(applianceWithId);
+};
 export default Elec;
