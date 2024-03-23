@@ -1,13 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Electricite
- = () => {
+const Electricite = () => {
   return (
     <View>
-      <Text>Electricite
-        
-      </Text>
+      <Text>Electricite</Text>
     </View>
   )
 }

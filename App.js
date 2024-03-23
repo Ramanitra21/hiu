@@ -43,7 +43,7 @@ export default function App() {
             tabBarLabel: () => null, // Masquer l'étiquette pour tous les onglets
           })}
         >
-          <Tab.Screen name="Home" component={Home} options={{ headerShown: true }} />
+          <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
           <Tab.Screen name="Note" component={Note} options={{ headerShown: true }} />
           <Tab.Screen name="Materiel" component={Materiel} options={{ headerShown: false }} />
           <Tab.Screen name="Electricite" component={Electricite} options={{ headerShown: true }} />
