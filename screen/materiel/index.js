@@ -1,18 +1,11 @@
-import React, { useState, useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image, StatusBar } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Image, StatusBar } from 'react-native';
 import MeubleList from './components/meuble';
 import ElecList from './components/elec';
 import MaintenanceList from './components/maintenance';
 
 const Materiel = () => {
   const [selectedComponent, setSelectedComponent] = useState('maintenance');
-  const scrollViewRef = useRef(null);
-
-  const scrollToButtons = () => {
-    if (scrollViewRef.current) {
-      scrollViewRef.current.scrollToEnd({ animated: true });
-    }
-  };
 
   const renderComponent = () => {
     switch (selectedComponent) {
@@ -27,12 +20,12 @@ const Materiel = () => {
   };
   
   return (
-    <ScrollView ref={scrollViewRef} style={{ backgroundColor: "#CFA875" }}>
+    <View style={{ backgroundColor: "#CFA875", flex: 1 }}>
       <View style={{ marginTop: '10%', paddingHorizontal: '4%' }}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={{ width: "56%", marginTop: '4%' }}>
             <Text style={{ color: "white", fontWeight: "bold", fontSize: 18 }}>
-              Les meubles et materiels dans notre maison {" "}
+              Les meubles et matériels dans notre maison
             </Text>
           </View>
           <View
@@ -73,7 +66,7 @@ const Materiel = () => {
                 Notification
               </Text>
               <Text style={{ color: "white", marginTop: 5 }}>
-                Liste des bien mobilier
+                Liste des biens mobiliers
               </Text>
             </View>
             <View
@@ -118,21 +111,43 @@ const Materiel = () => {
           </View>
         </View>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 20 }}>
+       <View style={{
+        height:'60%',
+        
+       }}>
+       
+       <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 20 }}>
           <TouchableOpacity style={[styles.barButton, selectedComponent === 'meuble' && styles.selected]} onPress={() => setSelectedComponent('meuble')}>
             <Text style={styles.buttonText}>Meuble</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.barButton, selectedComponent === 'elec' && styles.selected]} onPress={() => setSelectedComponent('elec')}>
-            <Text style={styles.buttonText}>Électricité</Text>
+            <Text style={styles.buttonText}>Appareil</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.barButton, selectedComponent === 'maintenance' && styles.selected]} onPress={() => setSelectedComponent('maintenance')}>
             <Text style={styles.buttonText}>Maintenance</Text>
           </TouchableOpacity>
         </View>
+       
+        <View style={{
+          marginTop:'4%',
+          height:'86%',
+          flexDirection:'row',
+          marginHorizontal:'2%'
+        }}>
+           <View style={{
+          backgroundColor:'white',
+          width:'0.5%',
+          marginRight:'2%'
+        }}>
+          
+        </View>
+        
         {renderComponent()}
+        </View>
         <StatusBar style="auto" />
+       </View>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 

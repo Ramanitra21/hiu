@@ -149,8 +149,6 @@ const styles = StyleSheet.create({
   maintenanceContainer: {
     marginBottom: 20,
     padding: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
     borderRadius: 5,
     backgroundColor:'#fff'
   },
@@ -209,7 +207,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 20,
-    backgroundColor: 'blue',
+    backgroundColor: '#CD8A3E',
     borderRadius: 30,
     width: 60,
     height: 60,

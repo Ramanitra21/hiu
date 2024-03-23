@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Ionicons } from '@expo/vector-icons';
-import Elec from '../../../../materialData/electric';
+import Elec from '../../../materialData/electric';
 
-const ElecList = () => {
+const ElecListf = () => {
   const [newElec, setNewElec] = useState({
     appliance: '',
     brand: '',
@@ -14,7 +14,8 @@ const ElecList = () => {
     energyConsumption: '',
     location: '',
     category: '',
-    shop: ''
+    shop: '',
+    dailyUsageHours: '' // Nouveau champ pour la durée de fonctionnement quotidienne
   });
 
   const [elecs, setElecs] = useState(Elec);
@@ -54,7 +55,8 @@ const ElecList = () => {
       energyConsumption: '',
       location: '',
       category: '',
-      shop: ''
+      shop: '',
+      dailyUsageHours: '' // Réinitialiser le champ de saisie pour la prochaine entrée
     });
     setIsAddingNewElec(false);
   };
@@ -66,14 +68,12 @@ const ElecList = () => {
           {elecs.map(elec => (
             <View key={elec.id} style={styles.elecContainer}>
               <Text style={styles.name}>{elec.appliance}</Text>
-              <Text>Marque: {elec.brand}</Text>
-              <Text>Date d'achat: {elec.purchaseDate}</Text>
-              <Text>Date de garantie: {elec.warrantyDate}</Text>
-              <Text>Date d'expiration: {elec.expirationDate}</Text>
-              <Text>Consommation d'énergie: {elec.energyConsumption}</Text>
-              <Text>Emplacement: {elec.location}</Text>
-              <Text>Catégorie: {elec.category}</Text>
-              <Text>Magasin: {elec.shop}</Text>
+              <Text>L'appareil se trouve dans la piece : {elec.location}</Text>
+              <Text>Consommation d'énergie: </Text>
+              <Text style={styles.name2}>{elec.energyConsumption}</Text>
+              <Text>Durée de fonctionnement quotidienne: </Text>
+              <Text style={styles.name2} >{elec.dailyUsageHours } heures/jours</Text>
+
             </View>
           ))}
         </ScrollView>
@@ -86,45 +86,14 @@ const ElecList = () => {
             value={newElec.appliance}
             onChangeText={text => handleInputChange('appliance', text)}
           />
+          {/* Ajoutez les nouveaux champs de saisie pour les données supplémentaires */}
           <TextInput
             style={styles.input}
-            placeholder="Brand"
-            value={newElec.brand}
-            onChangeText={text => handleInputChange('brand', text)}
+            placeholder="Daily Usage Hours"
+            value={newElec.dailyUsageHours}
+            onChangeText={text => handleInputChange('dailyUsageHours', text)}
           />
-          <TouchableOpacity onPress={() => showDatePicker('purchaseDate')}>
-            <Text style={styles.dateText}>Purchase Date: {newElec.purchaseDate}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => showDatePicker('warrantyDate')}>
-            <Text style={styles.dateText}>Warranty Date: {newElec.warrantyDate}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => showDatePicker('expirationDate')}>
-            <Text style={styles.dateText}>Expiration Date: {newElec.expirationDate}</Text>
-          </TouchableOpacity>
-          <TextInput
-            style={styles.input}
-            placeholder="Energy Consumption"
-            value={newElec.energyConsumption}
-            onChangeText={text => handleInputChange('energyConsumption', text)}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Location"
-            value={newElec.location}
-            onChangeText={text => handleInputChange('location', text)}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Category"
-            value={newElec.category}
-            onChangeText={text => handleInputChange('category', text)}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Shop"
-            value={newElec.shop}
-            onChangeText={text => handleInputChange('shop', text)}
-          />
+          {/* Reste du code pour les autres champs de saisie */}
           <TouchableOpacity style={styles.addButton} onPress={handleAddElec}>
             <Text style={styles.addButtonText}>Add Elec</Text>
           </TouchableOpacity>
@@ -150,7 +119,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor:'#CFA875'
+    backgroundColor:'#9C9FAB'
   },
   elecContainer: {
     marginBottom: 20,
@@ -162,7 +131,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
-    color: 'black',
+    color: '#504AA8',
+  },
+  name2: {
+    fontSize: 14,
+    fontWeight: 'bold',
+   
+    color: '#504AA8',
   },
   formContainer: {
     marginBottom: 20,
@@ -213,7 +188,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 20,
-    backgroundColor: '#CD8A3E',
+    backgroundColor: '#504AA8',
     borderRadius: 30,
     width: 60,
     height: 60,
@@ -223,4 +198,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ElecList;
+export default ElecListf;

@@ -46,8 +46,8 @@ export default function App() {
           <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
           <Tab.Screen name="Note" component={Note} options={{ headerShown: true }} />
           <Tab.Screen name="Materiel" component={Materiel} options={{ headerShown: false }} />
-          <Tab.Screen name="Electricite" component={Electricite} options={{ headerShown: true }} />
-          <Tab.Screen name="Depense" component={Depense} options={{ headerShown: true }} />
+          <Tab.Screen name="Electricite" component={Electricite} options={{ headerShown: false }} />
+          <Tab.Screen name="Depense" component={Depense} options={{ headerShown: false }} />
         </Tab.Navigator>
         <StatusBar style="light" />
       </View>
