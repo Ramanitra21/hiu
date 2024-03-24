@@ -257,37 +257,32 @@ export default function Electricite() {
               ))
             ) : (
               <View style={styles.formContainer}>
-                <Text style={styles.formTitle}>Add New Elec</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Appliance"
-                  value={newElec.appliance}
-                  onChangeText={text => handleInputChange('appliance', text)}
-                />
-                <TextInput
-  style={styles.input}
-  placeholder="Energy Consumption (W)"
-  value={newElec.energyConsumption}
-  keyboardType="numeric"
-  onChangeText={text => handleInputChange('energyConsumption', text)}
-/>
-
-<TextInput
-  style={styles.input}
-  placeholder="Daily Usage Hours"
-  value={newElec.dailyUsageHours}
-  keyboardType="numeric"
-  onChangeText={text => handleInputChange('dailyUsageHours', text)}
-/>
-
-                
-                <TouchableOpacity style={styles.addButton} onPress={handleAddElec}>
-                  <Text style={styles.addButtonText}>Add Elec</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.backButton} onPress={() => setIsAddingNewElec(false)}>
-                  <Text style={styles.backButtonText}>Back</Text>
-                </TouchableOpacity>
-              </View>
+              <Text style={styles.formTitle}>Add New Elec</Text>
+              <TextInput
+                style={styles.input}
+                placeholder=" Appliance "
+                value={newElec.appliance}
+                onChangeText={text => handleInputChange('appliance', text)}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder=" Puissace "
+                value={newElec.energyConsumption}
+                onChangeText={text => handleInputChange('energyConsumption', text)}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="  Daily Usage Hours"
+                value={newElec.dailyUsageHours}
+                onChangeText={text => handleInputChange('dailyUsageHours', text)}
+              />
+              <TouchableOpacity style={styles.addButton} onPress={handleAddElec}>
+                <Text style={styles.addButtonText}>Ajouter</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.backButton} onPress={() => setIsAddingNewElec(false)}>
+                <Text style={styles.backButtonText}>Back</Text>
+              </TouchableOpacity>
+            </View>
             )}
           </View>
         </View>
@@ -319,6 +314,20 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     fontSize: 18,
+  },
+  backButton: {
+    backgroundColor: "gray",
+    padding: 10,
+    borderRadius: 12,
+    alignItems: "center",
+    marginTop: 10,
+    width: 220,
+    height: 40,
+  },
+  backButtonText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
   },
   profileIcon: {
     marginLeft: "5%",
@@ -412,7 +421,22 @@ const styles = StyleSheet.create({
     color: "#504AA8",
   },
   formContainer: {
-    marginBottom: 20,
+    marginLeft: -8,
+    width: 344,
+    marginTop: -3,
+    paddingBottom: 100,
+    backgroundColor: "white",
+    borderRadius: 20,
+    paddingTop: 10,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   formTitle: {
     fontSize: 20,
@@ -421,35 +445,28 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
+    width: 217,
     borderColor: "#ccc",
     borderWidth: 1,
+    borderRadius: 12,
     marginBottom: 10,
     paddingHorizontal: 10,
   },
   addButton: {
-    backgroundColor: "blue",
+    backgroundColor: "#504AA8",
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 12,
     alignItems: "center",
     marginTop: 10,
+    height: 40,
+    width: 220,
   },
   addButtonText: {
     color: "white",
     fontSize: 18,
     fontWeight: "bold",
   },
-  backButton: {
-    backgroundColor: "gray",
-    padding: 10,
-    borderRadius: 5,
-    alignItems: "center",
-    marginTop: 10,
-  },
-  backButtonText: {
-    color: "white",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
+
   floatingButton: {
     position: "absolute",
     bottom: 20,

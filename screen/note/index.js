@@ -6,7 +6,7 @@ import * as Notifications from 'expo-notifications';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { MaterialIcons } from '@expo/vector-icons';
 import { StatusBar, Modal, StyleSheet, Text, View, Image, TouchableOpacity, Button, Platform, TextInput, ActivityIndicator, ScrollView } from 'react-native';
-
+import { Ionicons } from '@expo/vector-icons';
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -71,7 +71,7 @@ export default function App() {
     await Notifications.scheduleNotificationAsync({
       content: {
         title: notificationTitle,
-        body: `${notificationDescription} \n - Envoyé par ${firstName} ${lastName} le \n ${currentDate}`,
+        body: `${notificationDescription} \n ${firstName} ${lastName} `,
         data: { data: 'goes here' },
       },
       trigger: { date: selectedDate },
@@ -81,7 +81,7 @@ export default function App() {
       request: {
         content: {
           title: notificationTitle,
-          body: `${notificationDescription} \n - Envoyé par ${firstName} ${lastName} le \n ${currentDate}`,
+          body: `${notificationDescription} \n${firstName} ${lastName} `,
           data: { data: 'goes here' },
         },
         trigger: {
@@ -148,7 +148,10 @@ export default function App() {
   
 
   return (
-    <ScrollView style={{ width: '100%' }}>
+   <View style={{
+    height:'100%'
+   }}>
+       <ScrollView style={{ width: '100%' }}>
       <View style={{ flex: 1, backgroundColor: "#F4EFF0" }}>
         <View style={styles.container}>
           {/*--------------------------- Card du nav bar --------------------------- */}
@@ -254,24 +257,38 @@ bordeColor: "white",
             <TouchableOpacity onPress={() => setModalVisible(true)}>
               <Image
                 source={require("./image/plus.png")}
-                style={{ width: 50, height: 50 }}
+                style={{ width: 20, height: 20 }}
               />
             </TouchableOpacity>
           </View>
-
+          <View style={{marginRight: "4%", marginTop:"3%"}}>
           {notifications.slice(0).reverse().map((notification, index) => (
-          <Card key={index} style={{ margin: 10, padding: 10, backgroundColor: '#f0f0f0', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-            <TouchableOpacity onPress={() => handleDeleteNotification(index)}>
-              <MaterialIcons name="delete" size={24} color="red" />
-            </TouchableOpacity>
-            <View>
-              <Text style={{ fontWeight: 'bold' }}>{notification?.request?.content?.title || 'No title'}</Text>
-              <Text>{notification?.request?.content?.body || 'No body'}</Text>
-              <Text>Date prévue: {new Date(notification?.request?.trigger?.date).toLocaleString()}</Text>
-            </View>
-            
-          </Card>
-          ))}
+                  <Card key={index} style={{ 
+                      margin: 10, 
+                      padding: 10, 
+                      backgroundColor: '#CCC6D2', 
+                      width:'100%' 
+                  }}>
+                  
+                    <View style={{
+                      flexDirection: 'row', 
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}>
+                      <View>
+                        <Text style={{ fontWeight: 'bold', color:'white', fontSize:20 }}>{notification?.request?.content?.title || 'No title'}</Text>
+                        <Text style={{color:'white'}}>{notification?.request?.content?.body || 'No body'}</Text>
+                        <Text style={{color:'white'}}>Date prévue: {new Date(notification?.request?.trigger?.date).toLocaleString()}</Text>
+                      </View>
+                      <TouchableOpacity onPress={() => handleDeleteNotification(index)}>
+                      <MaterialIcons name="delete" size={25} color="white" />
+                    </TouchableOpacity>
+                    </View>
+                    
+                  </Card>
+                  ))}
+          </View>
+
 
           <StatusBar style="auto" />
         </View>
@@ -295,13 +312,13 @@ bordeColor: "white",
                 }}>
                 <Card style={{ padding: 20, marginBottom: 20, width: '100%', backgroundColor:"#EBC475" }}>
                   <TextInput
-                    placeholder="Votre Nom"
+                    placeholder="Détaille"
                     value={lastName}
                     onChangeText={text => setLastName(text)}
                     style={styles.input}
                   />
                   <TextInput
-                    placeholder="Prénom"
+                    placeholder="Lieu"
                     value={firstName}
                     onChangeText={text => setFirstName(text)}
                     style={styles.input}
@@ -319,7 +336,7 @@ bordeColor: "white",
                     style={styles.input}
                   />
                   <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-                    <Text>{selectedDate.toLocaleDateString()}</Text>
+                    <Text style={{color:"white", fontSize:24}}>{selectedDate.toLocaleDateString()}</Text>
                   </TouchableOpacity>
                   {showDatePicker && (
                     <DateTimePicker
@@ -336,7 +353,7 @@ bordeColor: "white",
                     />
                   )}
                   <TouchableOpacity onPress={() => setShowTimePicker(true)}>
-                    <Text>{selectedDate.toLocaleTimeString()}</Text>
+                    <Text style={{color:"white", fontSize:24}}>{selectedDate.toLocaleTimeString()}</Text>
                   </TouchableOpacity>
                   {showTimePicker && (
                     <DateTimePicker
@@ -359,15 +376,15 @@ bordeColor: "white",
                     animating={isLoading}
                     size="large"
                     color="#0000ff"
-                    style={{ marginBottom: 10 }}
+                    style={{ marginBottom: 1 }}
                   />
                   <Button
                     color={'#DA9752'}
-                    title="Press to schedule a notification"
+                    title="                     Ajouter la note                      "
                     onPress={async () => {
                       setModalVisible(!modalVisible);
                       if (!firstName || !lastName || !notificationTitle || !notificationDescription) {
-                        alert('Please fill in all fields.');
+                        alert('les champs sont vides');
                         return;
                       }
                       setIsLoading(true);
@@ -382,14 +399,19 @@ bordeColor: "white",
         </Modal>
       </View>
     </ScrollView>
+    <TouchableOpacity style={styles.floatingButton} onPress={() => setModalVisible(true)}>
+  <Ionicons name="add" size={24} color="white" />
+</TouchableOpacity>
+   </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop:'10%',
     backgroundColor: "#F4EFF0",
-    marginHorizontal: 30,
+    marginHorizontal: '4%',
   },
   centeredView: {
     flex: 1,
@@ -414,5 +436,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingHorizontal: 10,
     backgroundColor:"white"
+  },
+  floatingButton: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    backgroundColor: '#CD8A3E',
+    borderRadius: 30,
+    width: 60,
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 3,
   },
 });

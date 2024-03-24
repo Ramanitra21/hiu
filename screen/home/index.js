@@ -161,7 +161,8 @@ export default function App() {
 
   return (
     <View style={{ flex: 1, backgroundColor: "#CFA875" }}>
-      <View style={styles.container}>
+     <ScrollView>
+     <View style={styles.container}>
         {/*--------------------------- Text au top du nav bar --------------------------- */}
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={{ width: "56%" }}>
@@ -253,30 +254,69 @@ export default function App() {
             />
           </View>
         </View>
-        {notifications
-        .filter(notification => {
-          const notificationDate = new Date(notification?.request?.trigger?.date);
-          const currentDate = new Date();
-          const differenceInDays = Math.ceil((notificationDate - currentDate) / (1000 * 60 * 60 * 24));
-          return differenceInDays <= 5;
-        })
-        .slice(0)
-        .reverse()
-        .map((notification, index) => (
-          <Card key={index} style={{ margin: 10, padding: 10, backgroundColor: '#f0f0f0', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-            <TouchableOpacity onPress={() => handleDeleteNotification(index)}>
-              <MaterialIcons name="delete" size={24} color="red" />
-            </TouchableOpacity>
-            <View>
-              <Text style={{ fontWeight: 'bold' }}>{notification?.request?.content?.title || 'No title'}</Text>
-              <Text>{notification?.request?.content?.body || 'No body'}</Text>
-              <Text>Date prévue: {new Date(notification?.request?.trigger?.date).toLocaleString()}</Text>
+        <View
+            style={{
+              flexDirection: "row",
+              marginTop: 25,
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginHorizontal: "2%",
+            }}
+          >
+            <View style={{ flexDirection: "row" }}>
+              <Text style={{ color: "white", fontWeight: "bold", fontSize: 19 }}>
+                Rappel
+              </Text>
+              <Text style={{ color: "white", marginLeft: 5, fontSize: 19 }}>
+                importante
+              </Text>
             </View>
-          </Card>
-        ))}
+            <View
+              style={{
+                backgroundColor: "white",
+                width: 115,
+                height: 1,
+                marginTop: 3,
+                borderColor: "white",
+              }}
+            ></View>
+            <Image
+              source={require("./images/info.png")}
+              style={{ width: 15, height: 15 }}
+            />
+          </View>
+
+        <View style={{marginRight: "6.5%", marginTop:"3%"}}>
+          {notifications.slice(0).reverse().map((notification, index) => (
+                  <Card key={index} style={{ 
+                      margin: 10, 
+                      padding: 10, 
+                      backgroundColor: '#fff', 
+                      width:'100%' 
+                  }}>
+                  
+                    <View style={{
+                      flexDirection: 'row', 
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}>
+                      <View>
+                        <Text style={{ fontWeight: 'bold', color:'black', fontSize:20 }}>{notification?.request?.content?.title || 'No title'}</Text>
+                        <Text style={{color:'black'}}>{notification?.request?.content?.body || 'No body'}</Text>
+                        <Text style={{color:'black'}}>Date prévue: {new Date(notification?.request?.trigger?.date).toLocaleString()}</Text>
+                      </View>
+                      <TouchableOpacity onPress={() => handleDeleteNotification(index)}>
+                      <MaterialIcons name="delete" size={25} color="#848B66" />
+                    </TouchableOpacity>
+                    </View>
+                    
+                  </Card>
+                  ))}
+          </View>
 
         <StatusBar style="auto" />
       </View>
+     </ScrollView>
     </View>
   );
 }

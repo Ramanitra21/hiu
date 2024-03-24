@@ -113,7 +113,7 @@ const Materiel = () => {
           <View
             style={{
               backgroundColor: "#7B6945",
-              marginTop: 25,
+              marginTop: 45,
               padding: 20,
               borderRadius: 9,
             }}
@@ -159,12 +159,12 @@ const Materiel = () => {
       borderRadius: 11,
     }}
   >
-    <Text style={{ color: "white" }}>Notification</Text>
+    <Text style={{ color: "white" }}>Note de la maison</Text>
   </TouchableOpacity>
   <View
     style={{
       backgroundColor: "white",
-      width: 135,
+      width: 115,
       height: 1,
       bordeColor: "white",
     }}
@@ -195,38 +195,36 @@ const Materiel = () => {
           {meubles.map(meuble => (
             <View key={meuble.id} style={styles.meubleContainer}>
               <Text style={styles.name}>{meuble.name}</Text>
-              <Text>Marque: {meuble.brand}</Text>
-              <Text>Date d'achat: {meuble.purchaseDate}</Text>
-              <Text>Date de garantie: {meuble.warrantyDate}</Text>
-              <Text>Date d'expiration: {meuble.expirationDate}</Text>
-              <Text>Emplacement: {meuble.location}</Text>
-              <Text>Catégorie: {meuble.category}</Text>
+              <Text>Acheter chez {meuble.brand}</Text>
+              <Text>avec une date d'expiration approximative le</Text>
+              <Text style={{fontSize:18, color:"#CD8A3E"}}>{meuble.expirationDate}</Text>
+              <Text>dans l'éspace:  {meuble.location}</Text>
             </View>
           ))}
         </ScrollView>
       ) : (
         <ScrollView style={styles.formContainer}>
-          <Text style={styles.formTitle}>Add New Meuble</Text>
+          <Text style={styles.formTitle}>Ajouter un bien mobilier</Text>
           <TextInput
             style={styles.input}
-            placeholder="Name"
+            placeholder="Nom"
             value={newMeuble.name}
             onChangeText={text => handleInputChange('name', text)}
           />
           <TextInput
             style={styles.input}
-            placeholder="Brand"
+            placeholder="Marque"
             value={newMeuble.brand}
             onChangeText={text => handleInputChange('brand', text)}
           />
-          <TouchableOpacity onPress={() => showDatePicker('purchaseDate')}>
-            <Text style={styles.dateText}>Purchase Date: {newMeuble.purchaseDate}</Text>
+          <TouchableOpacity style= {{backgroundColor: "white", borderRadius: 6, padding:10, marginBottom :10}}onPress={() => showDatePicker('purchaseDate')}>
+            <Text style={styles.dateText}>Date d'achat{newMeuble.purchaseDate}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => showDatePicker('warrantyDate')}>
-            <Text style={styles.dateText}>Warranty Date: {newMeuble.warrantyDate}</Text>
+          <TouchableOpacity style= {{backgroundColor: "white", borderRadius: 6, padding:10, marginBottom :10}} onPress={() => showDatePicker('warrantyDate')}>
+            <Text style={styles.dateText}>Date de garantie {newMeuble.warrantyDate}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => showDatePicker('expirationDate')}>
-            <Text style={styles.dateText}>Expiration Date: {newMeuble.expirationDate}</Text>
+          <TouchableOpacity style= {{backgroundColor: "white", borderRadius: 6, padding:10,marginBottom :10}} onPress={() => showDatePicker('expirationDate')}>
+            <Text style={styles.dateText}>Date d'éxpiration {newMeuble.expirationDate}</Text>
           </TouchableOpacity>
           <TextInput
             style={styles.input}
@@ -241,10 +239,10 @@ const Materiel = () => {
             onChangeText={text => handleInputChange('category', text)}
           />
           <TouchableOpacity style={styles.addButton} onPress={handleAddMeuble}>
-            <Text style={styles.addButtonText}>Add Meuble</Text>
+            <Text style={styles.addButtonText}>Ajouter ce meuble</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.backButton} onPress={() => setIsAddingNewMeuble(false)}>
-            <Text style={styles.backButtonText}>Back</Text>
+          <TouchableOpacity style={styles.addButton} onPress={() => setIsAddingNewMeuble(false)}>
+          <Text style={styles.addButtonText}>Retourner</Text>
           </TouchableOpacity>
         </ScrollView>
       )}
@@ -313,11 +311,11 @@ fontWeight: 'bold',
 marginBottom: 10,
 },
 input: {
-borderWidth: 1,
-borderColor: '#ccc',
+padding: 10,
 borderRadius: 5,
 paddingHorizontal: 10,
 marginBottom: 10,
+backgroundColor:"white"
 },
 addButton: {
 backgroundColor: '#CD8A3E',
@@ -356,7 +354,7 @@ name: {
 fontSize: 18,
 fontWeight: 'bold',
 marginBottom: 5,
-color: 'black',
+color: '#CD8A3E',
 },
 formContainer: {
 marginBottom: 20,
@@ -365,12 +363,12 @@ formTitle: {
 fontSize: 20,
 fontWeight: 'bold',
 marginBottom: 10,
+color :"white"
 },
 dateText: {
 fontSize: 16,
 marginBottom: 10,
-textDecorationLine: 'underline',
-color: 'blue',
+color: 'grey',
 },
 });
 
