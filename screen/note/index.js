@@ -5,6 +5,7 @@ import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { MaterialIcons } from '@expo/vector-icons';
+
 import { StatusBar, Modal, StyleSheet, Text, View, Image, TouchableOpacity, Button, Platform, TextInput, ActivityIndicator, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 Notifications.setNotificationHandler({
@@ -312,7 +313,7 @@ bordeColor: "white",
                 }}>
                 <Card style={{ padding: 20, marginBottom: 20, width: '100%', backgroundColor:"#EBC475" }}>
                   <TextInput
-                    placeholder="Détaille"
+                    placeholder="Détail"
                     value={lastName}
                     onChangeText={text => setLastName(text)}
                     style={styles.input}
@@ -335,8 +336,14 @@ bordeColor: "white",
                     onChangeText={text => setNotificationDescription(text)}
                     style={styles.input}
                   />
+                  <View style={{
+                    flexDirection:'row',
+                    justifyContent:'space-between',
+                    alignItems: 'center',
+                    paddingHorizontal:'18%'
+                  }}>
                   <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-                    <Text style={{color:"white", fontSize:24}}>{selectedDate.toLocaleDateString()}</Text>
+                  <Text style={{color:"white", fontSize:24}}> <Ionicons name="calendar" size={40} color="white"  /></Text>
                   </TouchableOpacity>
                   {showDatePicker && (
                     <DateTimePicker
@@ -353,7 +360,8 @@ bordeColor: "white",
                     />
                   )}
                   <TouchableOpacity onPress={() => setShowTimePicker(true)}>
-                    <Text style={{color:"white", fontSize:24}}>{selectedDate.toLocaleTimeString()}</Text>
+                    <Text style={{color:"white", fontSize:24}}> <Ionicons name="time" size={40} color="white"  /></Text>
+                   
                   </TouchableOpacity>
                   {showTimePicker && (
                     <DateTimePicker
@@ -372,6 +380,8 @@ bordeColor: "white",
                       }}
                     />
                   )}
+                  
+                  </View>
                   <ActivityIndicator
                     animating={isLoading}
                     size="large"
@@ -431,15 +441,14 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    backgroundColor:"white"
+    marginBottom: 15,
+    padding: 10,
+    backgroundColor:"white",
+    borderRadius:0,
   },
   floatingButton: {
     position: 'absolute',
-    bottom: 20,
+    bottom: 20, 
     right: 20,
     backgroundColor: '#CD8A3E',
     borderRadius: 30,

@@ -13,7 +13,7 @@ const ElecList = () => {
     expirationDate: '',
     energyConsumption: '',
     location: '',
-    category: '',
+    category: '', 
     shop: ''
   });
 

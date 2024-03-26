@@ -21,23 +21,27 @@ export default function App() {
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
+              let iconColor;
 
               if (route.name === 'Depense') {
-                iconName = focused ? 'cash' : 'cash-outline'; // Icone argent pour Depense
+                iconName = focused ? 'cash' : 'cash-outline';
+                iconColor = focused ? '#76CE9E' : 'black'; // Couleur rouge pour Depense
               } else if (route.name === 'Home') {
-                iconName = focused ? 'home' : 'home-outline';
+                iconName = focused ? 'notifications' : 'notifications-outline';
+                iconColor = focused ? '#F9C877' : 'black'; // Couleur verte pour Home
               } else if (route.name === 'Materiel') {
-                iconName = focused ? 'tv' : 'tv-outline'; // Icone téléphone pour Materiel
+                iconName = focused ? 'bed' : 'bed';
+                iconColor = focused ? '#7B6945' : 'black'; // Couleur orange pour Materiel
               } else if (route.name === 'Note') {
-                iconName = focused ? 'pencil' : 'pencil-outline'; // Icone de note pour Note
+                iconName = focused ? 'document' : 'document-outline';
+                iconColor = focused ? '#EBC475' : 'black'; // Couleur violette pour Note
               } else if (route.name === 'Electricite') {
                 iconName = focused ? 'flash' : 'flash-outline';
+                iconColor = focused ? '#504AA8' : 'black'; // Couleur bleue pour Electricite
               }
 
-              return <Ionicons name={iconName} size={size} color={color} />;
+              return <Ionicons name={iconName} size={size} color={iconColor} />;
             },
-            tabBarActiveTintColor: 'black',
-            tabBarInactiveTintColor: 'black',
             tabBarStyle: {
               backgroundColor: 'white',
             },
@@ -45,11 +49,13 @@ export default function App() {
           })}
         >
          
-          <Tab.Screen name="Note" component={Note} options={{ headerShown: false }} />
-          <Tab.Screen name="Materiel" component={Materiel} options={{ headerShown: false }} />
+         <Tab.Screen name="Electricite" component={Electricite} options={{ headerShown: false }} />
+         <Tab.Screen name="Depense" component={Depense} options={{ headerShown: false }} />
+          
           <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-          <Tab.Screen name="Electricite" component={Electricite} options={{ headerShown: false }} />
-          <Tab.Screen name="Depense" component={Depense} options={{ headerShown: false }} />
+          <Tab.Screen name="Materiel" component={Materiel} options={{ headerShown: false }} />
+          
+          <Tab.Screen name="Note" component={Note} options={{ headerShown: false }} />
         </Tab.Navigator>
         <StatusBar style="light" />
       </View>

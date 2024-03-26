@@ -3,20 +3,24 @@ import { Card } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
+import { useNavigation } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { MaterialIcons } from '@expo/vector-icons';
 import { StatusBar, Modal, StyleSheet, Text, View, Image, TouchableOpacity, Button, Platform, TextInput, ActivityIndicator, ScrollView } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native'; // Importer useFocusEffect depuis React Navigation
+import Map from './map';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
     shouldPlaySound: true,
     shouldSetBadge: false,
-  }),
+  }), 
 });
 
 export default function App() {
+   const [showMap, setShowMap] = useState(false);
+  const navigation = useNavigation(); 
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notifications, setNotifications] = useState([]);
   const [firstName, setFirstName] = useState('');
@@ -42,7 +46,7 @@ export default function App() {
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       console.log(response);
     });
-
+    
     return () => {
       Notifications.removeNotificationSubscription(notificationListener.current);
       Notifications.removeNotificationSubscription(responseListener.current);
@@ -161,6 +165,7 @@ export default function App() {
 
   return (
     <View style={{ flex: 1, backgroundColor: "#CFA875" }}>
+      
      <ScrollView>
      <View style={styles.container}>
         {/*--------------------------- Text au top du nav bar --------------------------- */}
@@ -285,9 +290,120 @@ export default function App() {
               style={{ width: 15, height: 15 }}
             />
           </View>
+          <View style={{
+              width:'100%',
+              height:100,
+              paddingHorizontal:'3%',
+              justifyContent:'center',
+              alignItems:'center',
+              
+            }}>
+            <View style={{
+              backgroundColor:'white',
+              marginTop:'10%',
+              height:'100%',
+              width:'100%',
+              marginBottom:'5%',
+              borderRadius:10,
+              flexDirection:'row',
+              justifyContent:'space-between',
+              alignItems:'center',
+              paddingHorizontal:'5%'
 
+            }}>
+            <View style={{
+              width:'80%',
+              height:'100%',
+              paddingTop:'5%'
+            }}>
+              <View>
+                <Text style={{
+                  fontWeight:'bold',
+                  fontSize:20,
+                }}>Lumière</Text>
+              </View>
+              <View>
+                <Text>Vous devrez chaner vos empoules</Text>
+              </View>
+              <View>
+                <Text>Prévu expirer le : 26-03-2024</Text>
+              </View>
+            </View>
+           
+              <View>
+              <TouchableOpacity  onPress={() => setShowMap(true)}>
+          <MaterialIcons name="light" size={25} color="#848B66" />
+        </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+             <View style={{
+              width:'100%',
+              height:100,
+              paddingHorizontal:'3%',
+              justifyContent:'center',
+              alignItems:'center',
+              marginTop:'6%',
+              marginBottom:'3%'
+            }}>
+            <View style={{
+              backgroundColor:'white',
+              marginTop:'10%',
+              height:'100%',
+              width:'100%',
+              marginBottom:'5%',
+              borderRadius:10,
+              flexDirection:'row',
+              justifyContent:'space-between',
+              alignItems:'center',
+              paddingHorizontal:'5%'
+
+            }}>
+            <View style={{
+              width:'80%',
+              height:'100%',
+              paddingTop:'5%'
+            }}>
+              <View>
+                <Text style={{
+                  fontWeight:'bold',
+                  fontSize:20,
+                }}>Climatiseur</Text>
+              </View>
+              <View>
+                <Text>Entretient rappel</Text>
+              </View>
+              <View>
+                <Text>Prévu expirer le : 26-03-2024</Text>
+              </View>
+            </View>
+            
+              <View>
+              <TouchableOpacity onPress={() => setShowMap(true)} >
+                      <MaterialIcons name="cloud" size={25} color="#848B66" />
+                    </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+          
+          <Modal visible={showMap} animationType="slide" onRequestClose={() => setShowMap(false)}>
+  <View style={{ flex: 1 }}>
+    <Map />
+  </View>
+</Modal>
+
+            
         <View style={{marginRight: "6.5%", marginTop:"3%"}}>
-          {notifications.slice(0).reverse().map((notification, index) => (
+        {notifications
+        .filter(notification => {
+          const notificationDate = new Date(notification?.request?.trigger?.date);
+          const currentDate = new Date();
+          const differenceInDays = Math.ceil((notificationDate - currentDate) / (1000 * 60 * 60 * 24));
+          return differenceInDays <= 5;
+        })
+        .slice(0)
+        .reverse()
+        .map((notification, index) => (
                   <Card key={index} style={{ 
                       margin: 10, 
                       padding: 10, 
@@ -317,6 +433,7 @@ export default function App() {
         <StatusBar style="auto" />
       </View>
      </ScrollView>
+     
     </View>
   );
 }

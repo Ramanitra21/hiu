@@ -20,6 +20,11 @@ export default function Electricite() {
     dailyUsageHours: ''
   });
 
+  const handleDeleteElec = (id) => {
+    const updatedElecs = elecs.filter(elec => elec.id !== id);
+    setElecs(updatedElecs);
+  };
+
   const [elecs, setElecs] = useState(Elec);
   const [isAddingNewElec, setIsAddingNewElec] = useState(false);
 
@@ -247,11 +252,14 @@ export default function Electricite() {
             {!isAddingNewElec ? (
               elecs.map(elec => (
                 <View key={elec.id} style={styles.elecContainer}>
+                  <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteElec(elec.id)}>
+                    <Ionicons name="trash" size={30} color="#757FAE" />
+                  </TouchableOpacity>
                   <Text style={styles.name}>{elec.appliance}</Text>
-                  <Text >L'appareil se trouve dans la pièce : {elec.location}</Text>
-                  <Text >Consommation d'énergie: </Text>
-                  <Text style={styles.name2}>{elec.energyConsumption}</Text>
-                  <Text >Durée de fonctionnement quotidienne: </Text>
+                  <Text>L'appareil se trouve dans la pièce : {elec.location}</Text>
+                  <Text>Consommation d'énergie: </Text>
+                  <Text style={styles.name2}>{elec.energyConsumption}W</Text>
+                  <Text>Durée de fonctionnement quotidienne: </Text>
                   <Text style={styles.name2}>{elec.dailyUsageHours} heures/jours</Text>
                 </View>
               ))
@@ -266,14 +274,16 @@ export default function Electricite() {
               />
               <TextInput
                 style={styles.input}
-                placeholder=" Puissace "
+                placeholder=" Puissance "
                 value={newElec.energyConsumption}
+                keyboardType="numeric"
                 onChangeText={text => handleInputChange('energyConsumption', text)}
               />
               <TextInput
                 style={styles.input}
                 placeholder="  Daily Usage Hours"
                 value={newElec.dailyUsageHours}
+                keyboardType="numeric"
                 onChangeText={text => handleInputChange('dailyUsageHours', text)}
               />
               <TouchableOpacity style={styles.addButton} onPress={handleAddElec}>
@@ -478,5 +488,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     elevation: 3,
+  },
+  deleteButton: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
   },
 });

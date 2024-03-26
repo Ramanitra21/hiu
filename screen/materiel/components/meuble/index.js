@@ -73,137 +73,137 @@ const MeubleList = () => {
         </ScrollView>
       ) : (
         <ScrollView style={styles.formContainer}>
-          <Text style={styles.formTitle}>Ajouter un nouveau meuble</Text>
+          <Text style={styles.formTitle}>Add New Meuble</Text>
           <TextInput
             style={styles.input}
-            placeholder="Nom"
+            placeholder="Name"
             value={newMeuble.name}
             onChangeText={text => handleInputChange('name', text)}
           />
           <TextInput
             style={styles.input}
-            placeholder="Marque"
+            placeholder="Brand"
             value={newMeuble.brand}
             onChangeText={text => handleInputChange('brand', text)}
           />
           <TouchableOpacity onPress={() => showDatePicker('purchaseDate')}>
-            <Text style={styles.dateText}>Date d'achat: {newMeuble.purchaseDate}</Text>
+            <Text style={styles.dateText}>Purchase Date: {newMeuble.purchaseDate}</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => showDatePicker('warrantyDate')}>
-            <Text style={styles.dateText}>Date de garantie: {newMeuble.warrantyDate}</Text>
+            <Text style={styles.dateText}>Warranty Date: {newMeuble.warrantyDate}</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => showDatePicker('expirationDate')}>
-            <Text style={styles
-.dateText}>Date d'expiration: {newMeuble.expirationDate}</Text>
-</TouchableOpacity>
-<TextInput
-  style={styles.input}
-  placeholder="Emplacement"
-  value={newMeuble.location}
-  onChangeText={text => handleInputChange('location', text)}
-/>
-<TextInput
-  style={styles.input}
-  placeholder="Catégorie"
-  value={newMeuble.category}
-  onChangeText={text => handleInputChange('category', text)}
-/>
-<TouchableOpacity style={styles.addButton} onPress={handleAddMeuble}>
-  <Text style={styles.addButtonText}>Ajouter le meuble</Text>
-</TouchableOpacity>
-<TouchableOpacity style={styles.backButton} onPress={() => setIsAddingNewMeuble(false)}>
-  <Text style={styles.backButtonText}>Retour</Text>
-</TouchableOpacity>
-</ScrollView>
-)}
-<DateTimePickerModal
-isVisible={isDatePickerVisible}
-mode="date"
-onConfirm={handleConfirm}
-onCancel={hideDatePicker}
-/>
-<TouchableOpacity style={styles.floatingButton} onPress={() => setIsAddingNewMeuble(true)}>
-<Ionicons name="add" size={24} color="white" />
-</TouchableOpacity>
-</View>
-);
+            <Text style={styles.dateText}>Expiration Date: {newMeuble.expirationDate}</Text>
+          </TouchableOpacity>
+          <TextInput
+            style={styles.input}
+            placeholder="Location"
+            value={newMeuble.location}
+            onChangeText={text => handleInputChange('location', text)}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Category"
+            value={newMeuble.category}
+            onChangeText={text => handleInputChange('category', text)}
+          />
+          <TouchableOpacity style={styles.addButton} onPress={handleAddMeuble}>
+            <Text style={styles.addButtonText}>Add Meuble</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.backButton} onPress={() => setIsAddingNewMeuble(false)}>
+            <Text style={styles.backButtonText}>Back</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      )}
+      <DateTimePickerModal
+        isVisible={isDatePickerVisible}
+        mode="date"
+        onConfirm={handleConfirm}
+        onCancel={hideDatePicker}
+      />
+      <TouchableOpacity style={styles.floatingButton} onPress={() => setIsAddingNewMeuble(true)}>
+        <Ionicons name="add" size={24} color="white" />
+      </TouchableOpacity>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-container: {
-flex: 1,
-padding: 10,
-backgroundColor: '#CFA875',
-},
-meubleContainer: {
-marginBottom: 20,
-padding: 10,
-borderRadius: 5,
-backgroundColor: '#fff',
-},
-name: {
-fontSize: 18,
-fontWeight: 'bold',
-marginBottom: 5,
-color: 'black',
-},
-formContainer: {
-marginBottom: 20,
-},
-formTitle: {
-fontSize: 20,
-fontWeight: 'bold',
-marginBottom: 10,
-},
-input: {
-height: 40,
-borderColor: '#ccc',
-borderWidth: 1,
-marginBottom: 10,
-paddingHorizontal: 10,
-},
-dateText: {
-fontSize: 16,
-marginBottom: 10,
-textDecorationLine: 'underline',
-color: 'blue',
-},
-addButton: {
-backgroundColor: 'blue',
-padding: 10,
-borderRadius: 5,
-alignItems: 'center',
-marginTop: 10,
-},
-addButtonText: {
-color: 'white',
-fontSize: 18,
-fontWeight: 'bold',
-},
-backButton: {
-backgroundColor: 'gray',
-padding: 10,
-borderRadius: 5,
-alignItems: 'center',
-marginTop: 10,
-},
-backButtonText: {
-color: 'white',
-fontSize: 18,
-fontWeight: 'bold',
-},
-floatingButton: {
-position: 'absolute',
-bottom: 20,
-right: 20,
-backgroundColor: '#CD8A3E',
-borderRadius: 30,
-width: 60,
-height: 60,
-justifyContent: 'center',
-alignItems: 'center',
-elevation: 3,
-},
+  container: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: '#CFA875',
+  },
+  meubleContainer: {
+    marginBottom: 20,
+    padding: 10,
+    
+    borderRadius: 5,
+    backgroundColor: '#fff',
+  },
+  name: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+    color: 'black',
+  },
+  formContainer: {
+    marginBottom: 20,
+  },
+  formTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  input: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+  },
+  dateText: {
+    fontSize: 16,
+    marginBottom: 10,
+    textDecorationLine: 'underline',
+    color: 'blue',
+  },
+  addButton: {
+    backgroundColor: 'blue',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  addButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  backButton: {
+    backgroundColor: 'gray',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  backButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  floatingButton: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    backgroundColor: '#CD8A3E',
+    borderRadius: 30,
+    width: 60,
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 3,
+  },
 });
 
 export default MeubleList;

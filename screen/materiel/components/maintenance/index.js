@@ -133,9 +133,6 @@ const MaintenanceList = () => {
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
       />
-      <TouchableOpacity style={styles.floatingButton} onPress={() => setIsAddingNewMaintenance(true)}>
-        <Ionicons name="add" size={24} color="white" />
-      </TouchableOpacity>
     </View>
   );
 };
