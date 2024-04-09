@@ -1,13 +1,22 @@
 {
   "expo": {
+<<<<<<< HEAD
     "name": "dirickx",
     "slug": "dirickx",
+=======
+    "name": "hiu2",
+    "slug": "hiu2",
+>>>>>>> 3132242e52aef60489a5d4205a917d37324c2019
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
+<<<<<<< HEAD
       "image": "./assets/splash.png",
+=======
+      "image": "./assets/1.png",
+>>>>>>> 3132242e52aef60489a5d4205a917d37324c2019
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,10 +30,23 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+<<<<<<< HEAD
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
+=======
+      },
+      "package": "com.toki21.hiu2"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c2d1d3ab-5d7c-4ccf-8452-8d627de9e6e2"
+      }
+>>>>>>> 3132242e52aef60489a5d4205a917d37324c2019
     }
   }
 }
